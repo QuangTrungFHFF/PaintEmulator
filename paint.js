@@ -45,7 +45,7 @@ class paint {
         this.context.arc(mousePos.x, mousePos.y, this.lineWidth/2, 0, Math.PI * 2, false);        
         this.context.fill();
         this.context.closePath();
-        console.log("click down");
+        //console.log("click down");
         var vit = document.getElementById('info');
         vit.innerHTML = this.drawing;
     }
@@ -56,20 +56,23 @@ class paint {
             this.drawLine(this.currentPos, mousePosMove);            
         }
         this.currentPos = mousePosMove;
-        console.log("on click");
+        //console.log("on click");
     }
 
     mouseup(event) {
-        this.drawing = false;
-               
-        console.log("click up");  
+        this.drawing = false;               
+                
         this.image.push(new Image);
+        if(this.image.length > 10){
+            this.image.splice(0, 1);
+        }
         this.image[this.image.length-1].src = this.canvas.toDataURL("image/bmp", 1.0);          
         if(this.beginLine){
             this.context.closePath(); 
         }   
-        var vit2 = document.getElementById('info');     
-        vit2.innerHTML = this.drawing;
+
+        /*var vit2 = document.getElementById('info');     
+        vit2.innerHTML = this.drawing;*/
           
     }
 
