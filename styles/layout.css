@@ -11,13 +11,24 @@ body{
 .topmenu{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    
     background-color: rgb(245, 238, 238);
     padding: 0px;
 }
 .topmenu > div{
-    border: 1px solid black;
+    user-select: none;
+    --border: 1px solid black;    
+    padding: 2px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 
+                 'Lucida Sans', Arial, sans-serif;
+    font-size: 1em;
+    padding: 5px 7px;             
 }
+.topmenu > div:hover{
+    background-color: rgb(216, 213, 213);  
+    cursor: normal;         
+}
+
 #tools{
     display: flex;
     background-color: #333;
