@@ -21,8 +21,8 @@ class paint {
         this.drawLine(10, 10, 100, 100);
     }
 
-    getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
+    getMousePos(evt) {
+        var rect = this.canvas.getBoundingClientRect();
         return {
             x: evt.clientX - rect.left,
             y: evt.clientY - rect.top
@@ -31,15 +31,22 @@ class paint {
     
     mousedown(event) {
         let mousePos = this.getMousePos(event);
-        console.log("click");
+        this.drawing = true;
+        console.log("click down");
     }
 
     mousemove(event) {
-        console.log("click");
+        let mousePos = this.getMousePos(event);
+        if(this.drawing){
+            this.drawLine(this.currentPos, mousePos);
+        }
+        this.currentPos = mousePos;
+        console.log("on click");
     }
 
     mouseup(event) {
-        console.log("click");
+        this.drawing = false;
+        console.log("click up");
     }
 
 
@@ -55,12 +62,12 @@ class paint {
             (event) => this.mouseup(event));         
     }
 
-    drawLine(startX, startY, endX, endY){
+    drawLine(startPos, endPos){
         this.context.lineWidth = this.lineWidth;
         this.context.strokeStyle = this.color;
         this.context.beginPath();
-        this.context.moveTo(startX, startY);
-        this.context.lineTo(endX, endY);
+        this.context.moveTo(startPos.x, startPos.y);
+        this.context.lineTo(endPos.x, endPos.y);
         this.context.stroke();
 
 

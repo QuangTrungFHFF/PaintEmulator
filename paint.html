@@ -33,10 +33,24 @@
         <button onclick="changeColor('#ff0000')">Red</button>
         <button onclick="changeColor('#000000')">Black</button>
         <button onclick="changeColor('#00ff00')">Green</button>
+
+        <button onclick="changeLineWidth(1)">1</button>
+        <button onclick="changeLineWidth(3)">3</button>
+        <button onclick="changeLineWidth(5)">5</button>
+        <button onclick="changeLineWidth(7)">7</button>
     </div>
     <canvas id="board"></canvas>
     
     <script type="text/javascript" src="paint.js"></script>
+    <script type="text/javascript">
+        function changeColor(color){
+            p.color = color;
+        }
+
+        function changeLineWidth(width){
+            p.lineWidth = width;
+        }
+    </script>
 </body>
 
 </html>
