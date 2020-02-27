@@ -8,7 +8,9 @@ class paint {
         this.color = '#ff0000';
         this.tool = 'brush'; // circle, rect, line
         this.lineWidth = 5;
+        this.image = [];
         this.drawBackGround();  
+        this.beginLine = false;
 
         this.currentPos = {
             x: 0,
@@ -16,7 +18,10 @@ class paint {
         }
 
         this.drawing = false;
-        this.image = null;
+        
+        
+        
+
         
         //listen mouse event
         this.listenEvent();
@@ -35,10 +40,14 @@ class paint {
     mousedown(event) {
         let mousePos = this.getMousePos(event);
         this.drawing = true;
+        this.context.beginPath();
         this.context.fillStyle = this.color;
         this.context.arc(mousePos.x, mousePos.y, this.lineWidth/2, 0, Math.PI * 2, false);        
         this.context.fill();
+        this.context.closePath();
         console.log("click down");
+        var vit = document.getElementById('info');
+        vit.innerHTML = this.drawing;
     }
 
     mousemove(event) {
@@ -52,10 +61,16 @@ class paint {
 
     mouseup(event) {
         this.drawing = false;
-        this.context.closePath();
-        this.image = new Image;
-        this.image.src = this.canvas.toDataURL("image/bmp", 1.0);
-        console.log("click up");        
+               
+        console.log("click up");  
+        this.image.push(new Image);
+        this.image[this.image.length-1].src = this.canvas.toDataURL("image/bmp", 1.0);          
+        if(this.beginLine){
+            this.context.closePath(); 
+        }   
+        var vit2 = document.getElementById('info');     
+        vit2.innerHTML = this.drawing;
+          
     }
 
 
@@ -74,14 +89,32 @@ class paint {
     drawBackGround(){
         this.context.fillStyle = '#ffffff';
         this.context.fillRect(0, 0, 1200, 800);
+        let backGround = this.canvas.toDataURL("image/bmp", 1.0);
+        this.image.push(new Image);
+        this.image[0].src = backGround;
+
     }
     drawLine(startPos, endPos){
         this.context.lineWidth = this.lineWidth;
         this.context.strokeStyle = this.color;
         this.context.beginPath();
+        this.beginLine = true;
         this.context.moveTo(startPos.x, startPos.y);
         this.context.lineTo(endPos.x, endPos.y);
         this.context.stroke();
+    }
+
+    undo(){
+        if(this.image.length>1){    
+            this.image.pop();        
+            let oldPic = this.image[this.image.length-1]
+            this.context.drawImage(oldPic, 0, 0, 1200, 800);
+        }  
+    }
+
+    drawCurrent(){
+        document.body.appendChild(this.image[0]);
+        document.body.appendChild(this.image[1]);
     }
 }
 

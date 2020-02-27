@@ -30,6 +30,9 @@
 </head>
 <body>
     <div id="tools">
+        <button onclick="undo()">Undo</button>
+        <button onclick="drawCurrent()">Draw Current</button>
+
         <button onclick="changeTool('brush')">Brush</button>
         <button onclick="changeTool('line')">Line</button>
 
@@ -41,21 +44,31 @@
         <button onclick="changeLineWidth(3)">3</button>
         <button onclick="changeLineWidth(5)">5</button>
         <button onclick="changeLineWidth(7)">7</button>
+        <p id="info" style="color:chocolate">0</p>
+        <p id="info2" style="color:rgb(21, 221, 48)">0</p>
     </div>
     <canvas id="board"></canvas>
     
     <script type="text/javascript" src="paint.js"></script>
     <script type="text/javascript">
+        function undo(){
+            p.undo();
+        }
+
         function changeTool(tool){
             p.tool = tool;
         }
-        
+
         function changeColor(color){
             p.color = color;
         }
 
         function changeLineWidth(width){
             p.lineWidth = width;
+        }
+
+        function drawCurrent(){
+            p.drawCurrent();
         }
 
 
