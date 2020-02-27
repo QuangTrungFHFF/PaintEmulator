@@ -30,6 +30,9 @@
 </head>
 <body>
     <div id="tools">
+        <button onclick="changeTool('brush')">Brush</button>
+        <button onclick="changeTool('line')">Line</button>
+
         <button onclick="changeColor('#ff0000')">Red</button>
         <button onclick="changeColor('#000000')">Black</button>
         <button onclick="changeColor('#00ff00')">Green</button>
@@ -43,6 +46,10 @@
     
     <script type="text/javascript" src="paint.js"></script>
     <script type="text/javascript">
+        function changeTool(tool){
+            p.tool = tool;
+        }
+        
         function changeColor(color){
             p.color = color;
         }
@@ -50,6 +57,8 @@
         function changeLineWidth(width){
             p.lineWidth = width;
         }
+
+
     </script>
 </body>
 

@@ -6,14 +6,17 @@ class paint {
         this.canvas.height = 800;
         this.context = this.canvas.getContext('2d');
         this.color = '#ff0000';
-        this.tool = 'pen'; // circle, rect, line
-        this.lineWidth = 5;  
+        this.tool = 'brush'; // circle, rect, line
+        this.lineWidth = 5;
+        this.drawBackGround();  
 
         this.currentPos = {
             x: 0,
             y: 0
         }
+
         this.drawing = false;
+        this.image = null;
         
         //listen mouse event
         this.listenEvent();
@@ -50,7 +53,9 @@ class paint {
     mouseup(event) {
         this.drawing = false;
         this.context.closePath();
-        console.log("click up");
+        this.image = new Image;
+        this.image.src = this.canvas.toDataURL("image/bmp", 1.0);
+        console.log("click up");        
     }
 
 
@@ -66,6 +71,10 @@ class paint {
             (event) => this.mouseup(event));         
     }
 
+    drawBackGround(){
+        this.context.fillStyle = '#ffffff';
+        this.context.fillRect(0, 0, 1200, 800);
+    }
     drawLine(startPos, endPos){
         this.context.lineWidth = this.lineWidth;
         this.context.strokeStyle = this.color;
