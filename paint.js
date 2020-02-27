@@ -32,20 +32,24 @@ class paint {
     mousedown(event) {
         let mousePos = this.getMousePos(event);
         this.drawing = true;
+        this.context.fillStyle = this.color;
+        this.context.arc(mousePos.x, mousePos.y, this.lineWidth/2, 0, Math.PI * 2, false);        
+        this.context.fill();
         console.log("click down");
     }
 
     mousemove(event) {
-        let mousePos = this.getMousePos(event);
+        let mousePosMove = this.getMousePos(event);
         if(this.drawing){
-            this.drawLine(this.currentPos, mousePos);
+            this.drawLine(this.currentPos, mousePosMove);            
         }
-        this.currentPos = mousePos;
+        this.currentPos = mousePosMove;
         console.log("on click");
     }
 
     mouseup(event) {
         this.drawing = false;
+        this.context.closePath();
         console.log("click up");
     }
 
@@ -69,8 +73,6 @@ class paint {
         this.context.moveTo(startPos.x, startPos.y);
         this.context.lineTo(endPos.x, endPos.y);
         this.context.stroke();
-
-
     }
 }
 
