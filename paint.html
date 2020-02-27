@@ -31,7 +31,7 @@
 <body>
     <div id="tools">
         <button onclick="undo()">Undo</button>
-        <button onclick="drawCurrent()">Draw Current</button>
+        <button onclick="clearScreen()">Clear</button>
 
         <button onclick="changeTool('brush')">Brush</button>
         <button onclick="changeTool('line')">Line</button>
@@ -55,6 +55,10 @@
             p.undo();
         }
 
+        function clearScreen(){
+            p.clear();
+        }
+
         function changeTool(tool){
             p.tool = tool;
         }
@@ -66,12 +70,6 @@
         function changeLineWidth(width){
             p.lineWidth = width;
         }
-
-        function drawCurrent(){
-            p.drawCurrent();
-        }
-
-
     </script>
 </body>
 
