@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MS Paint Emulator</title>
     <link href="styles/layout.css" rel="stylesheet" type="text/css">
     <style type="text/css">
-    
+
     </style>
 </head>
+
 <body>
-    <div class="vertical">
+    <div class="menucontainer">
         <div class="topmenu">
             <div>File</div>
             <div>Edit</div>
@@ -19,50 +21,53 @@
             <div>Colors</div>
             <div>Help</div>
         </div>
-        <div class="mainpage">
-            <div class="sidebar" >
-                <button onclick="undo()">Undo</button>
-                <button onclick="clearScreen()">Clear</button>
-        
-                <button onclick="changeTool('brush')">Brush</button>
-                <button onclick="changeTool('line')">Line</button>
-        
-                <button onclick="changeColor('#ff0000')">Red</button>
-                <button onclick="changeColor('#000000')">Black</button>
-                <button onclick="changeColor('#00ff00')">Green</button>
-        
-                <button onclick="changeLineWidth(1)">1</button>
-                <button onclick="changeLineWidth(3)">3</button>
-                <button onclick="changeLineWidth(5)">5</button>
-                <button onclick="changeLineWidth(7)">7</button>
-                <p id="info" style="color:chocolate">0</p>
-                <p id="info2" style="color:rgb(21, 221, 48)">0</p>
-            </div>    
-            <div class="mainscreen">            
-                <canvas id="board"></canvas>
-            </div>
+        <div class="colorpicker">
+            <button onclick="changeColor('#ff0000')">Red</button>
+            <button onclick="changeColor('#000000')">Black</button>
+            <button onclick="changeColor('#00ff00')">Green</button>
         </div>
     </div>
     
+    <div class="mainpage">
+        <div class="sidebar"  style="overflow: hidden">
+            <button onclick="undo()">Undo</button>
+            <button onclick="clearScreen()">Clear</button>
+
+            <button onclick="changeTool('brush')">Brush</button>
+            <button onclick="changeTool('line')">Line</button>
+
+            <button onclick="changeLineWidth(1)">1</button>
+            <button onclick="changeLineWidth(3)">3</button>
+            <button onclick="changeLineWidth(5)">5</button>
+            <button onclick="changeLineWidth(7)">7</button>
+            <p id="info" style="color:chocolate">0</p>
+            <p id="info2" style="color:rgb(21, 221, 48)">0</p>
+        </div>
+        <div class="mainscreen">
+            <canvas id="board"></canvas>
+        </div>
+    </div>
+    
+
     <script type="text/javascript" src="paint.js"></script>
     <script type="text/javascript">
-        function undo(){
+        function undo() {
             p.undo();
         }
 
-        function clearScreen(){
+        function clearScreen() {
             p.clear();
         }
 
-        function changeTool(tool){
+        function changeTool(tool) {
             p.tool = tool;
         }
 
-        function changeColor(color){
+        function changeColor(color) {
             p.color = color;
         }
 
-        function changeLineWidth(width){
+        function changeLineWidth(width) {
             p.lineWidth = width;
         }
     </script>

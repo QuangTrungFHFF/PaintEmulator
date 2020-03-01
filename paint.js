@@ -2,8 +2,8 @@
 class paint {
     constructor() {
         this.canvas = document.getElementById('board');
-        this.canvas.width = 1200;
-        this.canvas.height = 800;
+        this.canvas.width = 800;
+        this.canvas.height = 600;
         this.context = this.canvas.getContext('2d');
         this.color = '#ff0000';
         this.tool = 'brush'; // circle, rect, line
@@ -100,7 +100,7 @@ class paint {
 
     drawBackGround() {
         this.context.fillStyle = '#ffffff';
-        this.context.fillRect(0, 0, 1200, 800);
+        this.context.fillRect(0, 0, 800, 600);
         let backGround = this.canvas.toDataURL("image/bmp", 1.0);
         this.image.push(new Image);
         this.image[0].src = backGround;
@@ -120,13 +120,13 @@ class paint {
         if (this.image.length > 1) {
             this.image.pop();
             let oldPic = this.image[this.image.length - 1];
-            this.context.drawImage(oldPic, 0, 0, 1200, 800);
+            this.context.drawImage(oldPic, 0, 0, 800, 600);
         }
     }
 
     undoForLine() {
         let fixedImage = this.fixedImg;
-        this.context.drawImage(fixedImage, 0, 0, 1200, 800);
+        this.context.drawImage(fixedImage, 0, 0, 800, 600);
     }
 
     clear() {
